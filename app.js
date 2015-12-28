@@ -10,7 +10,7 @@
     try{
       input = input.replace(/console\.log/g,"log")
   console.log(input)
-      var ret = eval(input)
+      var ret = JSON.stringify(eval(input))
       output.innerHTML = output.innerHTML + "<br>-> " +ret;
     } catch (e) {
       output.innerHTML += e; 
