@@ -9,3 +9,13 @@ body{
 #output{
   font-family: monospace;
 }
+
+@media all and (max-width: 40em){
+  #input, #output{
+    width:100%;
+    float:none;
+  }
+  #output{
+    padding-left:1.5em;
+  }
+}
