@@ -1,19 +1,22 @@
 (function(){
+  var value = atob(window.location.hash.substr(1)) || "function hello(){\n  return 'hey there';\n}\n\nhello();"
   var cm = CodeMirror(document.getElementById("input"),{
-    value: document.getElementById("console").innerHTML,
+    value: value,
     mode: 'javascript',
     lineNumbers: true
   })
+  evaluate(cm.getValue())
   function evaluate(input){
     try{
-      input = input.replace(/console\.log/,"log")
+      input = input.replace(/console\.log/g,"log")
+  console.log(input)
       var ret = eval(input)
-      output.innerHTML = output.innerHTML + "<br>>" +ret;
+      output.innerHTML = output.innerHTML + "<br>-> " +ret;
     } catch (e) {
       output.innerHTML += e; 
     }
     function log( input ){
-      output.innerHTML = output.innerHTML + "<br><-"+input;
+      output.innerHTML = output.innerHTML + "<br><- "+input;
     }
   }
 
@@ -22,4 +25,20 @@
     e.preventDefault(); 
     evaluate(cm.getValue())
   })
+  var clear = document.querySelector(".js-clear")
+  clear.addEventListener("click", function(e){
+    e.preventDefault(); 
+    output.innerHTML = "";
+  })
+
+  var isTyping
+  document.body.addEventListener("keyup", function(event){
+    isTyping = clearTimeout( isTyping )
+    isTyping = setTimeout(function(e){
+      save( cm.getValue() )
+    },1000) 
+  })
+  function save(val){
+    window.location.hash = btoa(val)
+  }
 })()

@@ -3,21 +3,13 @@
   <head>
     <title>eval</title>
     <link rel='stylesheet' type='text/css' href='codemirror.css'>
+    <link rel='stylesheet' type='text/css' href='styles.css'>
   </head>
   <body>
     <div id='input'></div>
     <a href='#' class='js-run'>Run</a>
+    <a href='#' class='js-clear'>Clear</a>
     <div id='output'></div>
-<script type='text/eval' id='console'>function each(collection, callback){
-  callback(collection[0])
-  var arr = collection
-  collection.shift()
-  return arr.length === 0 || each(arr, callback)
-}
-each([1,2,3], function(i){
-  console.log(i);
-})
-</script>
     <script src='codemirror-compressed.js'></script>
     <script src='app.js'></script>
   </body>

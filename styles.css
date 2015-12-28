@@ -1,0 +1,11 @@
+body{
+  margin:0;
+}
+#input, #output{
+  width:50%;
+  float:left;
+}
+
+#output{
+  font-family: monospace;
+}
