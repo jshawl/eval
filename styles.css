@@ -17,7 +17,7 @@ body{
   border-right:3px solid #ccc;
 }
 
-a{
+.ctrl a{
   color:#555;
   font-weight:bold;
   border: 2px solid #ccc;
@@ -26,11 +26,11 @@ a{
   display:inline-block;
 }
 
-a:first-of-type{
+.ctrl a:first-of-type{
   margin-left:2em;
 }
 
-a:hover{
+.ctrl a:hover{
   background:#efefef;
 }
 

@@ -18,7 +18,7 @@
     function log(){
       console.log("args", arguments);
       for(var i = 0; i < arguments.length; i++)
-	output.innerHTML = output.innerHTML + "<br><- "+arguments[i];
+	output.innerHTML = output.innerHTML + "<br> "+arguments[i];
     }
   }
 
