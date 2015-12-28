@@ -15,8 +15,10 @@
     } catch (e) {
       output.innerHTML += e; 
     }
-    function log( input ){
-      output.innerHTML = output.innerHTML + "<br><- "+input;
+    function log(){
+      console.log("args", arguments);
+      for(var i = 0; i < arguments.length; i++)
+	output.innerHTML = output.innerHTML + "<br><- "+arguments[i];
     }
   }
 
