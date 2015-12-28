@@ -1,13 +1,37 @@
+*{
+  box-sizing:border-box;
+}
 body{
-  margin:0;
+  margin:1em 0;
+  font-family:'Inconsolata', monospace;
 }
 #input, #output{
   width:50%;
   float:left;
 }
-
 #output{
   font-family: monospace;
+  padding-left:2em;
+}
+#input{
+  border-right:3px solid #ccc;
+}
+
+a{
+  color:#555;
+  font-weight:bold;
+  border: 2px solid #ccc;
+  padding:.5em 1em;
+  text-decoration:none;
+  display:inline-block;
+}
+
+a:first-of-type{
+  margin-left:2em;
+}
+
+a:hover{
+  background:#efefef;
 }
 
 @media all and (max-width: 40em){
