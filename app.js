@@ -13,16 +13,9 @@
     changeCreateToUpdate()
     $.getJSON(apiUrl +"/"+ params().evalId + "/versions/" + params().versionId)
      .then(function(res){
-       console.log(res); 
        cm.setValue(res.contents)
        output.innerHTML = "";
        evaluate(cm.getValue())
-     })
-  }else{
-    $.getJSON(apiUrl + "/" + params().evalId + "/versions/last")
-     .then(function(res){
-       console.log(res); 
-       cm.setValue(res.contents)
      })
   }
   var cm = CodeMirror(document.getElementById("input"),{
@@ -40,7 +33,6 @@
       output.innerHTML += e; 
     }
     function log(){
-      console.log("args", arguments);
       for(var i = 0; i < arguments.length; i++)
 	output.innerHTML = output.innerHTML + "<br> "+arguments[i];
     }
@@ -90,7 +82,6 @@
     $.post(apiUrl + "/" + params().evalId + "/versions", {
       contents: val
     },function(res){
-      console.log(res);
       window.location.hash = "/" + res.version.evalId + "/" + (res.index - 1);
     })
   }
