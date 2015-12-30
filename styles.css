@@ -1,9 +1,17 @@
 *{
   box-sizing:border-box;
 }
+h1{
+  margin-left:1em;
+}
+h1 a{
+  color: inherit;
+  text-decoration:none;
+}
 body{
   margin:1em 0;
   font-family:'Inconsolata', monospace;
+  color:#555;
 }
 #input, #output{
   width:50%;
@@ -22,12 +30,14 @@ body{
   font-weight:bold;
   border: 2px solid #ccc;
   padding:.5em 1em;
+  margin:.25em 0;
+  display:inline-block;
   text-decoration:none;
   display:inline-block;
 }
 
-.ctrl a:first-of-type{
-  margin-left:2em;
+.ctrl{
+  padding:0 0 1.5em 2em;
 }
 
 .ctrl a:hover{
@@ -38,6 +48,9 @@ body{
   #input, #output{
     width:100%;
     float:none;
+  }
+  #input{
+    margin-bottom:1em;
   }
   #output{
     padding-left:1.5em;

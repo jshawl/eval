@@ -1,4 +1,5 @@
-  var value = "function hello(){\n  return 'hey there';\n}\n\nhello();"
+  var value = "/* Your JavaScript Code Here */"
+  var apiUrl = "http://eval-api.jshawl.com/evals"
   var create = document.querySelector(".js-create");
   var params = function(){
     var params = window.location.hash.substr(1).split("/")
@@ -10,7 +11,7 @@
   }
   if(params().versionId){
     changeCreateToUpdate()
-    $.getJSON("http://localhost:3000/evals/" + params().evalId + "/versions/" + params().versionId)
+    $.getJSON(apiUrl +"/"+ params().evalId + "/versions/" + params().versionId)
      .then(function(res){
        console.log(res); 
        cm.setValue(res.contents)
@@ -18,7 +19,7 @@
        evaluate(cm.getValue())
      })
   }else{
-    $.getJSON("http://localhost:3000/evals/" + params().evalId + "/versions/last")
+    $.getJSON(apiUrl + "/" + params().evalId + "/versions/last")
      .then(function(res){
        console.log(res); 
        cm.setValue(res.contents)
@@ -67,7 +68,7 @@
     createEval(cm.getValue());
   })
   function createEval(val){
-    $.post("http://localhost:3000/evals", {
+    $.post(apiUrl, {
       contents: val
     },function(res){
       changeCreateToUpdate()
@@ -79,14 +80,14 @@
     update(cm.getValue());
   })
   function create(val){
-    $.post("http://localhost:3000/evals", {
+    $.post(apiUrl, {
       contents: val
     },function(res){
       window.location.hash = "/" + res.evalId + "/0";
     })
   }
   function update(val){
-    $.post("http://localhost:3000/evals/" + params().evalId + "/versions", {
+    $.post(apiUrl + "/" + params().evalId + "/versions", {
       contents: val
     },function(res){
       console.log(res);
