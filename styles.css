@@ -53,6 +53,24 @@ body{
     margin-bottom:1em;
   }
   #output{
-    padding-left:1.5em;
+    padding: 0em 0 1.5em 2.5em;
   }
+}
+
+footer{
+  clear:both;
+  padding: 2em;
+  margin-top:2em;
+  border-top:3px solid #ccc;
+}
+
+footer a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.cf:after{
+  content:' ';
+  display:table;
+  clear:both;
 }
