@@ -23,29 +23,38 @@
     mode: 'javascript',
     lineNumbers: true
   })
-  evaluate(cm.getValue())
+  evaluate(cm.getValue());
   function evaluate(input){
     try{
-      input = input.replace(/console\.log/g,"log")
-      var ret = JSON.stringify(eval(input))
-      output.innerHTML = output.innerHTML + "<br>-> " +ret;
+      // use our `log` function, instead of console.log
+      var parsedInput = input.replace(/console\.log/g,"log");
+      // process the input, outputing the results (console.logs included, via log())
+      var code_result = JSON.stringify(eval(parsedInput));
+
+      output.innerHTML += "<br>-> " +code_result;
+      output.innerHTML += "<br/>---";
     } catch (e) {
-      output.innerHTML += e; 
+      output.innerHTML += e;
     }
+
     function log(){
-      for(var i = 0; i < arguments.length; i++)
-	output.innerHTML = output.innerHTML + "<br> "+arguments[i];
+      // output each list of eval'd arguments
+      output.innerHTML += "<br> ";
+      for(var i = 0; i < arguments.length; i++){
+        output.innerHTML += " "+arguments[i];
+      }
     }
   }
 
+
   var run = document.querySelector(".js-run")
   run.addEventListener("click", function(e){
-    e.preventDefault(); 
+    e.preventDefault();
     evaluate(cm.getValue())
   })
   var clear = document.querySelector(".js-clear")
   clear.addEventListener("click", function(e){
-    e.preventDefault(); 
+    e.preventDefault();
     output.innerHTML = "";
   })
   var isTyping
@@ -53,10 +62,10 @@
     isTyping = clearTimeout( isTyping )
     isTyping = setTimeout(function(e){
       //save( cm.getValue() )
-    },1000) 
+    },1000)
   })
   create.addEventListener("click", function(event){
-    event.preventDefault(); 
+    event.preventDefault();
     createEval(cm.getValue());
   })
   function createEval(val){
@@ -68,7 +77,7 @@
     })
   }
   $("body").on("click", ".js-update", function(event){
-    event.preventDefault(); 
+    event.preventDefault();
     update(cm.getValue());
   })
   function create(val){
