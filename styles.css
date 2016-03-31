@@ -96,6 +96,11 @@ footer a {
   left:100%;
   width:35%;
   border-left: 3px solid #ccc;
+  overflow:hidden;
+}
+
+html{
+  overflow-x:hidden;
 }
 
 .recent ul{

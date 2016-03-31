@@ -10,15 +10,18 @@
       evalId: params[0]
     }
   }
-  if(params().versionId){
-    changeCreateToUpdate()
-    $.getJSON(apiUrl +"/"+ params().evalId + "/versions/" + params().versionId)
-     .then(function(res){
-       cm.setValue(res.contents)
-       output.innerHTML = "";
-       evaluate(cm.getValue())
-     })
+  function load(){
+    if(params().versionId){
+      changeCreateToUpdate()
+      $.getJSON(apiUrl +"/"+ params().evalId + "/versions/" + params().versionId)
+       .then(function(res){
+	 cm.setValue(res.contents)
+	 output.innerHTML = "";
+	 evaluate(cm.getValue())
+       })
+    }
   }
+  load();
   var cm = CodeMirror(document.getElementById("input"),{
     value: value,
     mode: 'javascript',
@@ -127,4 +130,9 @@
     $li.append($a);
     $li.append($s);
     $container.append($li)
+  }
+
+  window.onhashchange = function(event){
+    document.body.classList.remove("show-recent")
+    load() 
   }
