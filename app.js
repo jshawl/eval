@@ -41,7 +41,13 @@
       // output each list of eval'd arguments
       output.innerHTML += "<br> ";
       for(var i = 0; i < arguments.length; i++){
-        output.innerHTML += " "+arguments[i];
+	if(arguments[i].constructor.name == "String"){
+	  output.innerText += JSON.stringify(arguments[i])
+	} else if(typeof arguments[i] == "function"){
+	  output.innerText += arguments[i].toString()
+	} else {
+	  output.innerText += JSON.stringify(arguments[i])
+	}
       }
     }
   }
