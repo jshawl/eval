@@ -115,17 +115,9 @@
   }
 
 
-  var evls = Eval.all();
-  // clear old
-  evls.forEach(function( e ){
-    var d = new Date()
-    var oneDayAgo = d.setDate( d.getDate() -  1)
-    if(new Date(e.time).getTime() < oneDayAgo){
-      e.destroy() 
-    }
-  })
 
   // show recent
+  var evls = Eval.all().reverse();
   var $container = $(".js-recent ul")
   for(var i = 0; i < evls.length; i++){
     var hash = evls[i].hash
