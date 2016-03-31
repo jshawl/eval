@@ -7,12 +7,17 @@
     <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
     <meta name='viewport' content='width=device-width'>
   </head>
-  <body>
+  <body class='show-recent'>
     <h1><a href="./">Eval</a></h1>
-    <div class='ctrl'>
-      <a href='#' class='js-run'>Run</a>
-      <a href='#' class='js-clear'>Clear</a>
-      <a href='#' class='js-create'>Save</a>
+    <div class='ctrl cf'>
+      <div class='left'>
+	<a href='#' class='js-run'>Run</a>
+	<a href='#' class='js-clear'>Clear</a>
+	<a href='#' class='js-create'>Save</a>
+      </div>
+      <div class='right'>
+	<a href='#' class='js-recent'>Recent</a>
+      </div>
     </div>
     <div class='cf'>
     <div id='input'></div>
@@ -23,8 +28,14 @@
       <a href='https://github.com/jshawl/eval/issues/new'>Feedback</a> |
       <a href='https://jesse.sh/'>by jshawl</a>
     </footer>
+    <div class='js-recent recent'>
+    <ul>
+    </ul>
+    </div>
     <script src='codemirror-compressed.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src='js/jquery.timeago.js'></script>
+    <script src='js/active-storage.js'></script>
     <script src='app.js'></script>
     <script type="text/javascript">
       var _gauges = _gauges || [];

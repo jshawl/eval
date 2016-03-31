@@ -1,6 +1,7 @@
   var value = "/* Your JavaScript Code Here */"
   var apiUrl = "http://eval-api.jshawl.com/evals"
   var create = document.querySelector(".js-create");
+  var Eval = Object.create( new ActiveStorage("Eval") )
   var params = function(){
     var params = window.location.hash.substr(1).split("/")
     params.shift()
@@ -63,6 +64,11 @@
     e.preventDefault();
     output.innerHTML = "";
   })
+  var recent = document.querySelector(".js-recent")
+  recent.addEventListener("click", function(e){
+    e.preventDefault();
+    document.body.classList.toggle("show-recent");
+  })
   var isTyping
   document.body.addEventListener("keyup", function(event){
     isTyping = clearTimeout( isTyping )
@@ -80,6 +86,7 @@
     },function(res){
       changeCreateToUpdate()
       window.location.hash = "/" + res.evalId + "/0";
+      Eval.create({hash: window.location.hash, time: new Date()})
     })
   }
   $("body").on("click", ".js-update", function(event){
@@ -98,9 +105,34 @@
       contents: val
     },function(res){
       window.location.hash = "/" + res.version.evalId + "/" + (res.index - 1);
+      Eval.create({hash: window.location.hash, time: new Date()})
     })
   }
   function changeCreateToUpdate(){
-    $(".js-create").remove();
-    $(".ctrl").append("<a href='' class='js-update'>Update</a>")
+    var $createButton = $('.js-create')
+    $createButton.after("<a href='' class='js-update'>Update</a>")
+    $createButton.remove();
+  }
+
+
+  var evls = Eval.all();
+  // clear old
+  evls.forEach(function( e ){
+    var d = new Date()
+    var oneDayAgo = d.setDate( d.getDate() -  1)
+    if(new Date(e.time).getTime() < oneDayAgo){
+      e.destroy() 
+    }
+  })
+
+  // show recent
+  var $container = $(".js-recent ul")
+  for(var i = 0; i < evls.length; i++){
+    var hash = evls[i].hash
+    var $a = $("<a href='"+hash+"'>"+hash+"</a>");
+    var $s = $("<small> "+$.timeago(evls[i].time)+"</small>");
+    var $li = $("<li></li>");
+    $li.append($a);
+    $li.append($s);
+    $container.append($li)
   }
