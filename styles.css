@@ -19,6 +19,7 @@ body{
 }
 #output{
   font-family: monospace;
+  white-space: pre;
   padding-left:2em;
 }
 #input{
